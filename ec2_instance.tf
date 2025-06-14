@@ -48,15 +48,19 @@ resource "aws_security_group" "mysg"{
 resource "aws_instance" "ec2_instance" {
     key_name = aws_key_pair.deployer.key_name
     security_groups = [aws_security_group.mysg.name]
-    instance_type = "t2.micro"
-    ami = "ami-0d1b5a8c13042c939"
+#   instance_type = "t2.micro"
+    instance_type = var.ec2_instance_type
+#   ami = "ami-0d1b5a8c13042c939"
+    ami = var.ec2_ami_id
+    user_data = file("install_nginx.sh")
 
     root_block_device {
-      volume_size = "8"
+#     volume_size = "8"
+      volume_size = var.ec2_root_storage_size
       volume_type = "gp3"
     }
   
     tags = {
-      name = "Terraform-ec2"
+      Name = "Terraform-ec2"
     }
 }
