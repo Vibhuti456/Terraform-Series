@@ -26,7 +26,8 @@ terraform output
 ```
 output "ec2_instance_ip" {
     value = {
-      for key in aws_instance.myinstance : key.public_ip
+      for name, instance in aws_instance.ec2_instance :
+      name => instance.public_ip
    }
 }
 ```
