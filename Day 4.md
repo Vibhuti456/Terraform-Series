@@ -24,8 +24,10 @@ terraform output
 ```
 #### Output with for_each meta Argument - 
 ```
-for_each {
-    value = for key in aws_instance.myinstance : key.public_ip
+output "ec2_instance_ip" {
+    value = {
+      for key in aws_instance.myinstance : key.public_ip
+   }
 }
 ```
 
@@ -101,7 +103,7 @@ Example
 ```
 resource "aws_instance" "myinstance"{
     for_each = tomap ({
-     "EC2_instance_1" = "t2.micro"
+     "EC2_instance_1" = "t2.micro",
      "EC2_instance_2" = "t2.micro"
     })
     instance_type = each.value
