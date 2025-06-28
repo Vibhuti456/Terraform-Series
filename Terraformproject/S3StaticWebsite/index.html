@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Competition Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f6fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #232f3e;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #ff9900;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e08800;
+    }
+
+    .message {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>AWS Competition Registration</h2>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button onclick="register()">Register</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    function register() {
+      const name = document.getElementById("nameInput").value.trim();
+      const messageDiv = document.getElementById("message");
+
+      if (name === "") {
+        messageDiv.style.color = "red";
+        messageDiv.textContent = "Please enter your name.";
+      } else {
+        messageDiv.style.color = "green";
+        messageDiv.textContent = `Thank you, ${name}! You are registered for the AWS competition.`;
+        document.getElementById("nameInput").value = "";
+      }
+    }
+  </script>
+</body>
+</html>
